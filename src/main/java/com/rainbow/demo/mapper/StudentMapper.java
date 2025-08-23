@@ -1,4 +1,4 @@
-package com.rainbow.demo.student.mapper;
+package com.rainbow.demo.mapper;
 
 
 import java.util.List;
@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.rainbow.demo.student.entity.Student;
+import com.rainbow.demo.entity.Student;
 
 @Mapper
 public interface StudentMapper {

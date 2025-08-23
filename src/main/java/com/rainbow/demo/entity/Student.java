@@ -1,4 +1,4 @@
-package com.rainbow.demo.student.entity;
+package com.rainbow.demo.entity;
 
 
 public class Student {
