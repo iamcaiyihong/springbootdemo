@@ -30,4 +30,8 @@ public interface StudentMapper {
 
     @Delete("DELETE FROM student WHERE id = #{id}")
     int delete(Long id);
+
+    @Update("UPDATE student SET name = #{name} WHERE id = #{id}")
+    int updateNameById(int id, String name);
 }
+
