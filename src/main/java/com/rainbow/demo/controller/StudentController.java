@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rainbow.demo.entity.Student;
+import com.rainbow.demo.entity.StudentDocument;
 import com.rainbow.demo.service.StudentService;
 
 @RestController
@@ -32,7 +34,7 @@ public class StudentController {
     }
 
     // Read
-    @GetMapping("/{id}")
+    @GetMapping("/{id:[0-9]+}")  // 只允许数字
     public Student getById(@PathVariable Long id) {
         return studentService.getStudent(id);
     }
@@ -55,5 +57,15 @@ public class StudentController {
     public String delete(@PathVariable Long id) {
         int rows = studentService.deleteStudent(id);
         return rows > 0 ? "Delete success" : "Delete failed";
+    }
+
+    @GetMapping("/_search")
+    public List<StudentDocument> search(@RequestParam String name) {
+        return studentService.searchByName(name);
+    }
+
+    @PostMapping("/_save")
+    public StudentDocument save(@RequestBody StudentDocument student) {
+        return studentService.save(student);
     }
 }

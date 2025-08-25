@@ -61,6 +61,12 @@
             <scope>runtime</scope>
         </dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
+
+
         <!-- Lombok（简化 Getter/Setter，可选） -->
         <dependency>
             <groupId>org.projectlombok</groupId>

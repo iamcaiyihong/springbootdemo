@@ -13,6 +13,9 @@ spring:
             database: 0
             # 如果有密码
             # password: 123456
+    
+    elasticsearch:
+        uris: http://elasticsearch:9200
 
     kafka:
         # bootstrap-servers: localhost:9092

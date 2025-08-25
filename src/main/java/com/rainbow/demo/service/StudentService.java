@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.rainbow.demo.entity.Student;
+import com.rainbow.demo.entity.StudentDocument;
 import com.rainbow.demo.mapper.StudentMapper;
+import com.rainbow.demo.repository.StudentRepository;
 
 @Service
 public class StudentService {
@@ -22,12 +24,23 @@ public class StudentService {
     @Autowired
     Cache<String, Object> caffeineCache;
 
+    @Autowired
+    StudentRepository repository;
+
     private String buildKey(Long id) {
         return "stu_"+id;
     }
 
     public StudentService(StudentMapper studentMapper) {
         this.studentMapper = studentMapper;
+    }
+
+    public List<StudentDocument> searchByName(String keyword) {
+        return repository.findByNameContaining(keyword);
+    }
+
+    public StudentDocument save(StudentDocument student) {
+        return repository.save(student);
     }
 
     public Student getStudent(Long id) {
