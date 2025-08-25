@@ -3,7 +3,6 @@ package com.rainbow.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +17,24 @@ public class StudentService {
 
     private final StudentMapper studentMapper;
 
-    @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
-    Cache<String, Object> caffeineCache;
+    private final Cache<String, Object> caffeineCache;
 
-    @Autowired
-    StudentRepository repository;
+    private final StudentRepository repository;
 
     private String buildKey(Long id) {
         return "stu_"+id;
     }
 
-    public StudentService(StudentMapper studentMapper) {
+    public StudentService(StudentMapper studentMapper, 
+    Cache<String, Object>  caffeineCache, 
+    RedisTemplate<String, Object> redisTemplate,
+    StudentRepository repository) {
         this.studentMapper = studentMapper;
+        this.redisTemplate = redisTemplate;
+        this.caffeineCache = caffeineCache;
+        this.repository = repository;
     }
 
     public List<StudentDocument> searchByName(String keyword) {
