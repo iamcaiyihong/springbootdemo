@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-external
+  namespace: default
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  clusterIP: None   # Headless Service，不做代理
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: redis-external
+  namespace: default
+subsets:
+  - addresses:
+      - ip: 192.168.0.44   # 宿主机 IP
+    ports:
+      - port: 6379
